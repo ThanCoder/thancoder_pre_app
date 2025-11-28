@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   than_pkg: ^5.0.0
-  t_widgets: ^1.8.5
+  t_widgets: ^1.9.6
   flutter_markdown: ^0.7.7+1
 
 dev_dependencies:
