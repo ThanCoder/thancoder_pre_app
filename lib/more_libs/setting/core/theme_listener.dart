@@ -16,10 +16,10 @@ class _ThemeListenerState extends State<ThemeListener> {
   late StreamSubscription<Brightness> _streamSubscription;
   @override
   void initState() {
-    init(BrightnessServices.instance.currentBrightness);
-    _streamSubscription = BrightnessServices.instance.onBrightnessChanged
+    init(PBrightnessServices.instance.currentBrightness);
+    _streamSubscription = PBrightnessServices.instance.onBrightnessChanged
         .listen(init);
-    BrightnessServices.instance.init();
+    PBrightnessServices.instance.init();
     super.initState();
   }
 
@@ -52,32 +52,3 @@ class _ThemeListenerState extends State<ThemeListener> {
   }
 }
 
-class BrightnessServices with WidgetsBindingObserver {
-  // singleton
-  static final BrightnessServices instance = BrightnessServices._();
-  BrightnessServices._();
-  factory BrightnessServices() => instance;
-
-  final _controller = StreamController<Brightness>.broadcast();
-  Stream<Brightness> get onBrightnessChanged => _controller.stream;
-  Brightness currentBrightness = Brightness.light;
-
-  void init() {
-    WidgetsBinding.instance.addObserver(this);
-    // initial checkThemeEvent
-    checkCurrentTheme();
-  }
-
-  @override
-  void didChangePlatformBrightness() {
-    checkCurrentTheme();
-    super.didChangePlatformBrightness();
-  }
-
-  void checkCurrentTheme() {
-    // Android <10, Linux မှာ အမြဲ light ဖြစ်နိုင်တယ်
-    currentBrightness =
-        WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    _controller.add(currentBrightness);
-  }
-}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:t_widgets/t_widgets.dart';
 import 'package:than_pkg/than_pkg.dart';
 import 'package:thancoder_pre_app/more_libs/setting/app_config.dart';
-import 'package:thancoder_pre_app/more_libs/setting/core/theme_listener.dart';
 import 'package:thancoder_pre_app/more_libs/setting/setting.dart';
 
 class ThemeModesChooser extends StatefulWidget {
@@ -49,7 +49,7 @@ class _ThemeModesChooserState extends State<ThemeModesChooser> {
                     Setting.getAppConfigNotifier.value = newConfig;
                     await newConfig.save();
                     if (newConfig.themeMode == ThemeMode.system) {
-                      BrightnessServices.instance.checkCurrentTheme();
+                      PBrightnessServices.instance.checkCurrentTheme();
                     }
                     if (!mounted) return;
                     setState(() {});
