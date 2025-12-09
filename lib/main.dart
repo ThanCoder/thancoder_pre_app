@@ -19,6 +19,7 @@ void main() async {
   await TWidgets.instance.init(
     initialThemeServices: true,
     defaultImageAssetsPath: 'assets/thancoder_logo.png',
+    isDarkTheme: () => Setting.getAppConfig.isDarkTheme,
   );
 
   if (TPlatform.isDesktop) {
