@@ -10,7 +10,7 @@ void main() async {
 
   await Setting.instance.init(
     appName: 'appName',
-    releaseUrl: 'http',
+    // releaseUrl: 'http',
     onSettingSaved: (context, message) {
       showTSnackBar(context, message);
     },
